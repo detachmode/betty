@@ -11,10 +11,14 @@ router.get('/', function (req, res, next) {
 
 var sys = require('sys')
 var exec = require('child_process').exec;
-router.post('/', function (req, res, next) {
+router.get('/commandResponse', function (req, res, next) {
+  let cmd = req.query.cmdField
 
-  function puts(error, stdout, stderr) { res.send(stdout); }
-  exec("ls -la", puts);
+  exec(cmd, (error, stdout, stderr) => {
+    console.log(stdout)
+    console.error(stderr)
+    res.send(stdout);
+  });
 
 });
 

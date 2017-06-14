@@ -12,10 +12,16 @@
         }
 
         label {
+            padding: 10px;
+            border: 0 none wheat;
+
+            font-size: 20px;
             color: white
         }
 
         input {
+            padding: 10px;
+            border: 0 none wheat;
             color: white;
             background-color: black;
             font-size: 20px;
@@ -29,16 +35,45 @@
             margin: 4%;
         }
     </style>
+    <script type="text/javascript">
+        var httpRequest = null;
+
+        function SendRequest() {
+            httpRequest = new XMLHttpRequest();   // defined in ajax.js
+            // The requested file must be in the same domain that the page is served from.
+            var url = "/commandResponse?cmdField=";
+            var cmd = document.getElementById("cmdInput").value;
+
+            httpRequest.open("get", url + cmd, false);    // async
+            httpRequest.onreadystatechange = OnStateChange;
+            httpRequest.send(null);
+
+        }
+
+        function OnStateChange() {
+            if (httpRequest.readyState == 4) {
+                if (IsRequestSuccessful(httpRequest)) {    // defined in ajax.js
+                    alert(httpRequest.responseText);
+                }
+                else {
+                    alert("Operation failed.");
+                }
+            }
+        }
+    </script>
+
     <title>Document</title>
 </head>
 
 <body>
     <div class="firstdiv">
-        <form method="post" action="/">
+        <form method="get" action="/commandResponse">
             <label for="cmdField">Command</label>
-            <input type="test" name="cmdField">
+            <input id="cmdInput" type="test" name="cmdField">
             <input type="submit">
         </form>
+
+        <button onclick="SendRequest()">Test responseText property</button>
     </div>
 
 </body>
