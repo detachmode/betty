@@ -7,32 +7,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
         body {
-            background-color: darkslategrey;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+            margin: 0px;
+            background-color: #2A2D52;
+            font-family: monospace;
+            color: #A3AAFF
+        }
+
+        .head {
+            background-color: black;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            padding-bottom: 80px;
+            padding-top: 80px;
+            font-size: 60px;
+            margin: 0;
         }
 
         label {
             padding: 10px;
-            border: 0 none wheat;
+            border: 1 solid #80AAAD;
 
-            font-size: 20px;
-            color: white
+            font-size: 27px;
         }
 
+        #cmdInput{
+            width: 40%;
+        }
         input {
+
             padding: 10px;
-            border: 0 none wheat;
-            color: white;
-            background-color: black;
+            border: 0 dotted #80AAAD;
+            color: black;
+            background-color: white;
             font-size: 20px;
         }
 
 
         .firstdiv {
+            text-align: center;
+            background-color: #1D1D29;
+            padding: 40px;
+        }
 
-            background-color: #5c5c5c;
-            padding: 10px;
-            margin: 4%;
+        .afterhead {
+            padding: 40px;
+            margin: 0;
+            background-color: #80AAAD;
+            height: 200px;
         }
     </style>
     <script type="text/javascript">
@@ -67,15 +91,23 @@
 </head>
 
 <body>
-    <div class="firstdiv">
-        <form method="get" action="/commandResponse">
-            <label for="cmdField">Command</label>
-            <input id="cmdInput" type="test" name="cmdField">
-            <input type="submit">
-        </form>
+    <div class="head">
+        <h1> Betty's ❤️ Console  👾👾👾 </h1>
+        <div class="firstdiv">
 
-        <button onclick="SendRequest()">Test responseText property</button>
+            <form method="get" action="/commandResponse">
+                <label for="cmdField"></label>
+                <input id="cmdInput" type="test" name="cmdField">
+                <input value="💌" type="submit"></input>
+            </form>
+
+            <!--<button onclick="SendRequest()">Test responseText property</button>-->
+        </div>
     </div>
+    <div class="afterhead">
+
+    </div>
+
 
 </body>
 
