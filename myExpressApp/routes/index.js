@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var shell = require('shelljs');
+//var shell = require('shelljs');
+var sys = require('sys')
+var exec = require('child_process').exec;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -10,8 +12,7 @@ router.get('/', function (req, res, next) {
   //res.render('index', { title: 'Express' });
 });
 
-var sys = require('sys')
-var exec = require('child_process').exec;
+
 router.get('/commandResponse', function (req, res, next) {
   let cmd = req.query.cmdField
 
