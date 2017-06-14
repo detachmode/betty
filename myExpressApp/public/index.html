@@ -43,22 +43,23 @@
             // The requested file must be in the same domain that the page is served from.
             var url = "/commandResponse?cmdField=";
             var cmd = document.getElementById("cmdInput").value;
-
-            httpRequest.open("get", url + cmd, false);    // async
-            httpRequest.onreadystatechange = OnStateChange;
+            alert(url + cmd)
+            httpRequest.open("get", url + cmd, true);    // async
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState == XMLHttpRequest.DONE) {
+                    if (httpRequest.status == 200) {
+                        document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                    }
+                    else if (httpRequest.status == 400) {
+                        alert('There was an error 400');
+                    }
+                    else {
+                        alert('something else other than 200 was returned');
+                    }
+                }
+            };
             httpRequest.send(null);
 
-        }
-
-        function OnStateChange() {
-            if (httpRequest.readyState == 4) {
-                if (IsRequestSuccessful(httpRequest)) {    // defined in ajax.js
-                    alert(httpRequest.responseText);
-                }
-                else {
-                    alert("Operation failed.");
-                }
-            }
         }
     </script>
 

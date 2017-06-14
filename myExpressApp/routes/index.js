@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var shell = require('shelljs');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -17,7 +18,14 @@ router.get('/commandResponse', function (req, res, next) {
   exec(cmd, (error, stdout, stderr) => {
     console.log(stdout)
     console.error(stderr)
-    res.send(stdout);
+    var content = ""
+
+    exec('ls -la', function (code, stdout, stderr) {
+      console.log('Exit code:', code);
+      console.log('Program output:', stdout);
+      console.log('Program stderr:', stderr);
+    });
+    res.send("<html><div style='color:white; background-color:black;white-space: pre-wrap;'><pre>" + content + "</pre></div></html>");
   });
 
 });
